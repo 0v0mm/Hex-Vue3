@@ -1,6 +1,6 @@
 const app = {
   data: {
-    apiUrl: 'https://vue3-course-api.hexschool.io/',
+    apiUrl: 'https://vue3-course-api.hexschool.io/api',
     apiPath: 'minnvue',
     products: [],
   },
