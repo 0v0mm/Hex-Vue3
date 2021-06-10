@@ -1,5 +1,5 @@
 import { createApp } from 'https://cdnjs.cloudflare.com/ajax/libs/vue/3.0.11/vue.esm-browser.js';
-import pagination from './pagination.js';
+import pagination from '.pagination.js';
 
 let productModal = {}; // 定義接近全域變數
 
@@ -7,7 +7,7 @@ const app = createApp({
   data() {
     return {
       apiUrl: 'https://vue3-course-api.hexschool.io/api',
-      apiPath: 'casper-hexschool',
+      apiPath: 'minnvue',
       products: [],
       isNew: false,
       tempProduct: { // 稍後調整資料使用的結構

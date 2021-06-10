@@ -1,4 +1,4 @@
-// ESM CDN
+//載入CDN
 import { createApp } from 'https://cdnjs.cloudflare.com/ajax/libs/vue/3.0.11/vue.esm-browser.js';
 
 let productModal = {}; // 定義接近全域變數
@@ -11,11 +11,10 @@ const app = createApp({
       products: [],
       isNew: false,
       tempProduct: { // 稍後調整資料使用的結構
-        imagesUrl: [],
+        // imagesUrl: [],
       },
     }
   },
-  // 取得產品列表
   mounted() {
     const token = document.cookie.replace(/(?:(?:^|.*;\s*)hexToken\s*=\s*([^;]*).*$)|^.*$/, '$1');
     axios.defaults.headers.common['Authorization'] = token;
@@ -28,13 +27,13 @@ const app = createApp({
   methods: {
     getProducts() {
       const url = `${this.apiUrl}/${this.apiPath}/admin/products`;
-      axios.get(url) // 發出請求
+      axios.get(url) // 請求
         .then((res) => {
           console.log(res);
           if (res.data.success) {
             this.products = res.data.products
           } else {
-            alert('驗證錯誤，請重新登入'); // 代入錯誤
+            alert('....'); // 代入錯誤訊息
           }
         })
     },
