@@ -7,7 +7,7 @@ const app = {
 
   // 取得產品列表
   getData(page = 1) {
-    const url = `${this.data.apiUrl}/${this.data.apiPath}/products?page=${page}`;
+    const url = `${this.data.apiUrl}/${this.data.apiPath}/admin/products?page=${page}`;
     axios.get(url).then((response) => {
       if (response.data.success) {
         this.data.products = response.data.products;
@@ -25,7 +25,7 @@ const app = {
   deleteData(e) {
     if (window.confirm('確定刪除此商品嗎？')) {
       const { id } = e.target.dataset;
-      const url = `${this.data.apiUrl}/${this.data.apiPath}/product/${id}`;
+      const url = `${this.data.apiUrl}/${this.data.apiPath}/admin/product/${id}`;
 
       axios.delete(url).then((response) => {
         if (response.data.success) {
