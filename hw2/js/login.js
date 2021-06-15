@@ -1,4 +1,4 @@
-const url = 'https://vue3-course-api.hexschool.io/';
+const url = 'https://vue3-course-api.hexschool.io';
 const path = 'minnvue';
 
 // 取出DOM元素

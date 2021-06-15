@@ -26,7 +26,7 @@ const app = createApp({
   },
   methods: {
     getProducts() {
-      const url = `${this.apiUrl}/${this.apiPath}/admin/products`;
+      const url = `${this.apiUrl}/${this.apiPath}/products`;
       axios.get(url) // 請求
         .then((res) => {
           console.log(res);
@@ -37,6 +37,26 @@ const app = createApp({
           }
         })
     },
+
+    // 刪除產品
+    delProduct() {
+      const url = `${this.apiUrl}${this.apiPath}/admin/product/${this.tempProduct.id}`;
+
+      axios.delete(url).then((response) => {
+          console.log(response.data.message);
+          if (response.data.success) {
+            alert(response.data.message);
+            delProductModal.hide();
+            this.getProduct();
+          } else {
+            alert(response.data.message);
+          }
+        })
+        .catch((error) => {
+          console.log(error, response.data.message);
+        })
+    },
+    
     openModal(isNew, item) {
       this.isNew = isNew;
       if (this.isNew) {
@@ -54,10 +74,10 @@ const app = createApp({
       ]
     },
     updateProduct() {
-      let url = `${this.apiUrl}/${this.apiPath}/admin/product`;
+      let url = `${this.apiUrl}/${this.apiPath}/product`;
       let method = 'post';
       if (!this.isNew) {
-        url = `${this.apiUrl}/${this.apiPath}/admin/product/${this.tempProduct.id}`
+        url = `${this.apiUrl}/${this.apiPath}/product/${this.tempProduct.id}`
         method = 'put';
       }
 

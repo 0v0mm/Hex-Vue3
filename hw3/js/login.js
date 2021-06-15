@@ -1,4 +1,4 @@
-const url = 'https://vue3-course-api.hexschool.io/';
+const url = 'https://vue3-course-api.hexschool.io';
 const path = 'minnvue';
 
 // 取出DOM元素
@@ -25,7 +25,7 @@ function login(event) {
         console.log(expired, new Date(expired));
         // 將 Token 存到 Cookie
         document.cookie = `hexToken=${token};expires=${new Date(expired)}; path=/`;
-        window.location = 'products.html';
+        window.location = 'products_w3.html';
       } else {
         alert(res.data.message);
       }
