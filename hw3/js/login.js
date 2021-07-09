@@ -1,35 +1,37 @@
-const url = 'https://vue3-course-api.hexschool.io';
-const path = 'minnvue';
+import { createApp } from 'https://cdnjs.cloudflare.com/ajax/libs/vue/3.0.9/vue.esm-browser.js';
 
-// 取出DOM元素
-const usernameInput = document.querySelector('#username')
-const passwordInput = document.querySelector('#password')
-const loginBtn = document.querySelector('#login')
-loginBtn.addEventListener('click', login);
-// const form = document.querySelector('#form')
-// form.addEventListener('submit', login);
-
-function login(event) {
-  event.preventDefault();
-  const username = usernameInput.value;
-  const password = passwordInput.value;
-  const data = {
-    username,
-    password,
-  }
-  axios.post(`${url}/admin/signin`, data) // 發出請求
-    .then((res) => {
-      console.log(res);
-      if (res.data.success) {
-        const { token, expired } = res.data;
-        console.log(expired, new Date(expired));
-        // 將 Token 存到 Cookie
-        document.cookie = `hexToken=${token};expires=${new Date(expired)}; path=/`;
-        window.location = 'products_w3.html';
-      } else {
-        alert(res.data.message);
+createApp({
+  data() {
+    return {
+      apiUrl: 'https://vue3-course-api.hexschool.io',
+      user: {
+        username: '',
+        password: '',
+      },
+      page: '',
+    };
+  },
+  methods: {
+    login() {
+      const api = `${this.apiUrl}/admin/signin`;
+      if(!this.page) {
+        return alert('請選擇你要登入的頁面。');
       }
-    }).catch((error) => {
-      console.log(error);
-    });
-}
+
+      axios.post(api, this.user).then((response) => {
+        if(response.data.success) {
+          const { token, expired } = response.data;
+          // 寫入 cookie token
+          // expires 設置有效時間
+          document.cookie = `hexToken=${token};expires=${new Date(expired)}; path=/`;
+
+          window.location = `${this.page}.html`;
+        } else {
+          alert(response.data.message);
+        }
+      }).catch((error) => {
+        console.log(error);
+      });
+    },
+  },
+}).mount('#app');

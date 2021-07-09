@@ -1,0 +1,13 @@
+{
+  "folders": [
+	{
+		"path": "."
+	},
+	{
+		"path": "..\\..\\Downloads\\hw_34_live"
+	}
+],
+  "settings": {
+    "liveServer.settings.multiRootWorkspaceName": "Git_Hex"
+  }
+}
